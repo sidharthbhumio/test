@@ -1,3 +1,6 @@
+def updateJobStatus() {
+  step([$class: 'GitHubCommitStatusSetter', 'reposSource': [$class: 'ManuallyEnteredRepositorySource', url: GIT_URL]])
+}
 pipeline {
 
   agent {
@@ -6,10 +9,6 @@ pipeline {
       inheritFrom 'kaniko'
       namespace 'jenkins'
     }
-  }
-
-  def updateJobStatus() {
-    step([$class: 'GitHubCommitStatusSetter', 'reposSource': [$class: 'ManuallyEnteredRepositorySource', url: GIT_URL]])
   }
   
   stages {

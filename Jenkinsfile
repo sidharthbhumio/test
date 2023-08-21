@@ -7,11 +7,15 @@ pipeline {
       namespace 'jenkins'
     }
   }
+
+  def updateJobStatus() {
+    step([$class: 'GitHubCommitStatusSetter', 'reposSource': [$class: 'ManuallyEnteredRepositorySource', url: GIT_URL])
+  }
   
   stages {
     stage("Update Commit Status As Pending") {
       steps {
-        step([$class: 'GitHubSetCommitStatusBuilder'])
+        updateJobStatus()
       }
     }
 
@@ -30,7 +34,7 @@ pipeline {
 
   post { 
     always {
-      step([$class: 'GitHubCommitStatusSetter', 'reposSource': [$class: 'ManuallyEnteredRepositorySource', url: GIT_URL]])
+      updateJobStatus()
     }
   }
 }

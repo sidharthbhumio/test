@@ -7,12 +7,7 @@ pipeline {
       namespace 'jenkins'
     }
   }
-
-  environment {
-    GH_REPO = "https://api.github.com/repos/sidharthbhumio/test"
-    GH_TOKEN = credentials("github-token") 
-  }
-
+  
   stages {
     stage("Update Commit Status As Pending") {
       steps {

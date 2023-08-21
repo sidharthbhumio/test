@@ -16,7 +16,7 @@ pipeline {
   stages {
     stage("Update Commit Status As Pending") {
       steps {
-        step([$class: 'GitHubSetCommitStatusBuilder'])
+        step([$class: 'GitHubSetCommitStatusBuilder', 'reposSource': 'AnyDefinedRepositorySource'])
       }
     }
 
@@ -35,7 +35,7 @@ pipeline {
 
   post { 
     always {
-      step([$class: 'GitHubCommitStatusSetter'])
+      step([$class: 'GitHubCommitStatusSetter', 'reposSource': 'AnyDefinedRepositorySource'])
     }
   }
 }

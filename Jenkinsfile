@@ -23,7 +23,7 @@ pipeline {
 
     stage("Job") {
       steps {
-        sh "echo 'Hello World'"
+        sh "echo '${GIT_URL}'"
       }
     }
   }

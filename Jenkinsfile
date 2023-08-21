@@ -30,7 +30,7 @@ pipeline {
 
   post { 
     always {
-      step([$class: 'GitHubCommitStatusSetter', 'reposSource': [$class: 'ManuallyEnteredRepositorySource', url: ${GIT_URL}]])
+      step([$class: 'GitHubCommitStatusSetter', 'reposSource': [$class: 'ManuallyEnteredRepositorySource', url: GIT_URL]])
     }
   }
 }

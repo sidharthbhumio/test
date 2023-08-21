@@ -1,6 +1,12 @@
 pipeline {
 
-  agent any
+  agent {
+    kubernetes {
+      cloud 'kubernetes'
+      inheritFrom 'kaniko'
+      namespace 'jenkins'
+    }
+  }
 
   environment {
     GH_REPO = "https://api.github.com/repos/sidharthbhumio/test"
